@@ -3,12 +3,12 @@
     <h1>{{$page.race.name}}</h1>
     <div class="post__content" v-html="$page.race.content" />
     <h4>Features</h4>
-      <FeatureList v-for="feature in $page.race.features" v-key="feature.name" :feature="feature" />
+      <FeatureList v-for="feature in $page.race.features" :key="feature.name" :feature="feature" />
     <h2>Subraces</h2>
-    <div v-for="subrace in $page.race.subraces" v-key="subrace.name">
+    <div v-for="subrace in $page.race.subraces" :key="subrace.name">
       <h3>{{subrace.name}}</h3>
       <h4>Features</h4>
-      <FeatureList v-for="feature in subrace.features" v-key="feature.name" :feature="feature" />
+      <FeatureList v-for="feature in subrace.features" :key="feature.name" :feature="feature" />
     </div>
   </Layout>
 </template>
