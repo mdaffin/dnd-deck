@@ -20,7 +20,7 @@ export default {
     FeatureList
   },
   metaInfo: {
-    title: "A simple blog"
+    title: `Race`
   }
 };
 </script>
