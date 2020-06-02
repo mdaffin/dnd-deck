@@ -6,5 +6,23 @@
 
 module.exports = {
   siteName: 'RPG Tools',
-  plugins: []
+  plugins: [
+    {
+      use: '@gridsome/source-filesystem',
+      options: {
+        path: 'content/characters/**/*.md',
+        typeName: 'Character',
+        route: '/character/:name'
+      }
+    }
+  ],
+  transformers: {
+    remark: {
+      externalLinksTarget: '_blank',
+      externalLinksRel: ['nofollow', 'noopener', 'noreferrer'],
+      plugins: [
+        '@gridsome/remark-prismjs'
+      ]
+    }
+  },
 }

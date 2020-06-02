@@ -2,9 +2,12 @@
   <Layout>
     <h1>Hello, world!</h1>
 
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur excepturi labore tempore expedita, et iste tenetur suscipit explicabo! Dolores, aperiam non officia eos quod asperiores
-    </p>
+    <div class="characters">
+      <div v-for="edge in $page.characters.edges" :key="edge.node.id">
+        <g-link :to="edge.node.path">{{ edge.node.name }}</g-link>
+      </div>
+    </div>
+
   </Layout>
 </template>
 
@@ -18,3 +21,17 @@ export default {
 
 <style>
 </style>
+
+<page-query>
+query {
+  characters: allCharacter {
+    edges {
+      node {
+        id
+        name
+        path
+      }
+    }
+  }
+}
+</page-query>
