@@ -14,6 +14,14 @@ module.exports = {
         typeName: 'Character',
         route: '/character/:name'
       }
+    },
+    {
+      use: '@gridsome/source-filesystem',
+      options: {
+        path: 'content/races/**/*.md',
+        typeName: 'Race',
+        route: '/race/:name'
+      }
     }
   ],
   transformers: {
