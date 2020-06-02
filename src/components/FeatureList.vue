@@ -1,5 +1,5 @@
 <template>
-  <div class="feature">
+  <div>
     <h5>{{feature.name}}</h5>
     <p>{{feature.description}}</p>
   </div>
