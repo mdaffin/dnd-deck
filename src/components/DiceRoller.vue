@@ -55,7 +55,6 @@ export default {
 <style scoped>
 .card {
     display: inline-block;
-    width: auto;
     background: #FFF;
     border: 1px solid black;
     border-radius: .5em;
