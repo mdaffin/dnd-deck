@@ -4,6 +4,13 @@ features:
   - name: Ability Score Increase
     description: >-
       Your Constitution score increases by 2.
+    ability_scores:
+      strength: 0
+      dexterity: 0
+      consitiution: 2
+      intelligence: 0
+      wisdom: 0
+      charisma: 0
   - name: Age
     description: >-
       Dwarves mature at the same rate as humans, but they're considered young
@@ -82,6 +89,13 @@ subraces:
     features: 
       - name: Ability Score Increase
         description: Your Strength score increases by 2.
+        ability_scores:
+          strength: 2
+          dexterity: 0
+          consitiution: 0
+          intelligence: 0
+          wisdom: 0
+          charisma: 0
       - name: Dwarven Armor Training
         description: >-
           You have proficiency with light and medium armor.

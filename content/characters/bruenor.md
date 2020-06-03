@@ -2,6 +2,19 @@
 name: Bruenor
 player: Bob
 race: Dwarf
-subrace: Mountian Dwarf
+subrace: Mountain Dwarf
 gender: Male
+ability_scores:
+  strength:
+    base: 11
+  dexterity:
+    base: 14
+  consitiution:
+    base: 12
+  intelligence:
+    base: 13
+  wisdom:
+    base: 12
+  charisma:
+    base: 13
 ---
