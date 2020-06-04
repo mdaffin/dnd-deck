@@ -31,7 +31,7 @@ export default {
     },
     computed: {
         details() {
-            let details = String(this.numDice) + 'd' + String(this.dieType)
+            let details = `${this.numDice}d${this.dieType}`
             if (this.modifier < 0) {
                 details += String(this.modifier)
             }
