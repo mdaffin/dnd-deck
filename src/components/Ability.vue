@@ -1,7 +1,7 @@
 <template>
   <div>
-    <label>{{label}}: </label><span class="value">{{value}}</span>
-    <label> Mod: </label><span class="mod">{{mod}}</span>
+    <label>{{ label }}: </label><span class="value">{{ value }}</span>
+    <label> Mod: </label><span class="mod">{{ mod }}</span>
   </div>
 </template>
 
@@ -16,7 +16,7 @@ export default {
       } else {
         return `${mod}`;
       }
-    }
+    },
   },
-}
+};
 </script>
