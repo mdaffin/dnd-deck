@@ -26,6 +26,7 @@ jobs:
           ${{ runner.OS }}-node-
           ${{ runner.OS }}-
     - run: npm ci
+    - run: npm run lint
     - run: npm test
       env:
         CI: true
