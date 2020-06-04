@@ -4,9 +4,16 @@ features:
   - name: Ability Score Increase
     description: >-
       Your Constitution score increases by 2.
+    ability_scores:
+      strength: 0
+      dexterity: 0
+      consitiution: 2
+      intelligence: 0
+      wisdom: 0
+      charisma: 0
   - name: Age
     description: >-
-      Dwarves mature at the same rate as humans, but they’re considered young
+      Dwarves mature at the same rate as humans, but they're considered young
       until they reach the age of 50. On average, they live about 350 years.
   - name: Alignment
     description: >-
@@ -22,24 +29,46 @@ features:
     description: >-
       Your base walking speed is 25 feet. Your speed is not reduced by wearing
       heavy armor.
+    speed: 25
   - name: Darkvision
     description: >-
       Accustomed to life underground, you have superior vision in dark and dim
       conditions. You can see in dim light within 60 feet of you as if it were
-      bright light, and in darkness as if it were dim light. You can’t discern
+      bright light, and in darkness as if it were dim light. You can't discern
       color in darkness, only shades of gray.
   - name: Dwarven Resilience
     description: >-
       You have advantage on saving throws against poison, and you have
       resistance against poison damage (explained in the “Combat” section).
+    proficiencies:
+      saving-throws:
+        - poison
+      resistance:
+        - poison
   - name: Dwarven Combat Training
     description: >-
       You have proficiency with the battleaxe, handaxe, light hammer, and
       warhammer.
+    proficiencies:
+      weapons:
+        - battleaxe
+        - handaxe
+        - light hammer
+        - warhammer
   - name: Tool Proficiency
     description: >-
-      You gain proficiency with the artisan’s tools of your choice: smith’s
-      tools, brewer’s supplies, or mason’s tools.
+      You gain proficiency with the artisan's tools of your choice: smith's
+      tools, brewer's supplies, or mason's tools.
+    choices:
+      - proficiencies:
+          tools:
+            - smith's tools
+      - proficiencies:
+          tools:
+            - brewer's supplies
+      - proficiencies:
+          tools:
+            - mason's tools
   - name: Stonecunning
     description: >-
       Whenever you make an Intelligence (History) check related to the origin
@@ -51,12 +80,22 @@ features:
       You can speak, read, and write Common and Dwarvish. Dwarvish is full of
       hard consonants and guttural sounds, and those characteristics spill over
       into whatever other language a dwarf might speak.
+    languages:
+      - Common
+      - Dwarvish
 
 subraces:
-  - name: Mountain Dwarves
+  - name: Mountain Dwarf
     features: 
       - name: Ability Score Increase
         description: Your Strength score increases by 2.
+        ability_scores:
+          strength: 2
+          dexterity: 0
+          consitiution: 0
+          intelligence: 0
+          wisdom: 0
+          charisma: 0
       - name: Dwarven Armor Training
         description: >-
           You have proficiency with light and medium armor.
@@ -65,8 +104,8 @@ subraces:
 > "Yer late, elf!" came the rough edge of a familiar voice. Bruenor
 > Battlehammer walked up the back of his dead foe, disregarding the fact that
 > the heavy monster lay on top of his elven friend. In spite of the added
-> discomfort, the dwarf’s long, pointed, often-broken nose and gray-streaked
-> though still-fiery red beard came as a welcome sight to Drizzt. "Knew I’d
-> find ye in trouble if I came out an’ looked for ye!"
+> discomfort, the dwarf's long, pointed, often-broken nose and gray-streaked
+> though still-fiery red beard came as a welcome sight to Drizzt. "Knew I'd
+> find ye in trouble if I came out an' looked for ye!"
 >
 > — R. A. Salvatore, The Crystal Shard
