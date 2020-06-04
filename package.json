@@ -3,6 +3,8 @@
   "private": true,
   "scripts": {
     "test": "jest",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
     "build": "gridsome build",
     "develop": "gridsome develop",
     "explore": "gridsome explore"
@@ -18,15 +20,25 @@
     "babel-core": "^6.26.3",
     "babel-jest": "^26.0.1",
     "babel-preset-env": "^1.7.0",
+    "eslint": "^7.1.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-jest": "^23.13.2",
+    "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-vue": "^6.2.2",
     "jest": "^26.0.1",
     "jsdom": "^16.2.2",
     "jsdom-global": "^3.0.2",
+    "prettier": "^2.0.5",
     "vue": "^2.6.11",
     "vue-jest": "^3.0.5",
     "vue-template-compiler": "^2.6.11"
   },
   "jest": {
-    "moduleFileExtensions": ["js", "json", "vue"],
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "vue"
+    ],
     "transform": {
       "^.+\\.vue$": "vue-jest",
       "^.+\\.js$": "babel-jest"
@@ -34,5 +46,16 @@
     "moduleNameMapper": {
       "^@/(.*)$": "<rootDir>/src/$1"
     }
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "plugin:vue/essential",
+      "prettier/vue",
+      "plugin:prettier/recommended",
+      "plugin:jest/recommended",
+      "eslint:recommended"
+    ],
+    "ignorePatterns": ["src/main.js"]
   }
 }

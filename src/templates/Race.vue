@@ -1,14 +1,22 @@
 <template>
   <Layout>
-    <h1>{{$page.race.name}}</h1>
+    <h1>{{ $page.race.name }}</h1>
     <div class="post__content" v-html="$page.race.content" />
     <h4>Features</h4>
-      <FeatureList v-for="feature in $page.race.features" :key="feature.name" :feature="feature" />
+    <FeatureList
+      v-for="feature in $page.race.features"
+      :key="feature.name"
+      :feature="feature"
+    />
     <h2>Subraces</h2>
     <div v-for="subrace in $page.race.subraces" :key="subrace.name">
-      <h3>{{subrace.name}}</h3>
+      <h3>{{ subrace.name }}</h3>
       <h4>Features</h4>
-      <FeatureList v-for="feature in subrace.features" :key="feature.name" :feature="feature" />
+      <FeatureList
+        v-for="feature in subrace.features"
+        :key="feature.name"
+        :feature="feature"
+      />
     </div>
   </Layout>
 </template>
@@ -17,11 +25,11 @@
 import FeatureList from "@/components/FeatureList";
 export default {
   components: {
-    FeatureList
+    FeatureList,
   },
   metaInfo: {
-    title: `Race`
-  }
+    title: `Race`,
+  },
 };
 </script>
 
@@ -44,4 +52,3 @@ query ($id: ID!) {
   }
 }
 </page-query>
-

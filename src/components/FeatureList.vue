@@ -1,12 +1,12 @@
 <template>
   <div>
-    <h5>{{feature.name}}</h5>
-    <p>{{feature.description}}</p>
+    <h5>{{ feature.name }}</h5>
+    <p>{{ feature.description }}</p>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["feature"]
+  props: ["feature"],
 };
 </script>

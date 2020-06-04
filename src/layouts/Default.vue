@@ -9,7 +9,7 @@
         <g-link class="nav__link" to="/dice-roll-test">Dice Roller</g-link>
       </nav>
     </header>
-    <slot/>
+    <slot />
   </div>
 </template>
 
@@ -21,5 +21,4 @@ query {
 }
 </static-query>
 
-<style>
-</style>
+<style></style>

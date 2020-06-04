@@ -15,7 +15,6 @@
         <g-link :to="edge.node.path">{{ edge.node.name }}</g-link>
       </div>
     </div>
-
   </Layout>
 </template>
 

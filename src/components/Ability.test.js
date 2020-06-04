@@ -24,8 +24,11 @@ describe("Ability", () => {
     [18, "+4"],
     [19, "+4"],
     [20, "+5"],
-  ])("value %i should create mod %i ((value - 10)/2) rounded down", (value, mod) => {
-    const wrapper = shallowMount(Ability, { propsData: { value } });
-    expect(wrapper.get(".mod").text()).toBe(mod);
-  });
+  ])(
+    "value %i should create mod %i ((value - 10)/2) rounded down",
+    (value, mod) => {
+      const wrapper = shallowMount(Ability, { propsData: { value } });
+      expect(wrapper.get(".mod").text()).toBe(mod);
+    }
+  );
 });
