@@ -1,7 +1,7 @@
 <template>
   <div>
-    <label>{{label}}: </label><span>{{value}}</span>
-    <label> Mod: </label><span>{{mod}}</span>
+    <label>{{label}}: </label><span class="value">{{value}}</span>
+    <label> Mod: </label><span class="mod">{{mod}}</span>
   </div>
 </template>
 
@@ -10,7 +10,7 @@ export default {
   props: ["label", "value"],
   computed: {
     mod() {
-      let mod = Math.round((this.value - 10) / 2);
+      let mod = Math.floor((this.value - 10) / 2);
       if (mod >= 0) {
         return `+${mod}`;
       } else {
