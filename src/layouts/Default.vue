@@ -6,6 +6,7 @@
       </strong>
       <nav class="nav">
         <g-link class="nav__link" to="/">Home</g-link>
+        <g-link class="nav__link" to="/dice-roll-test">Dice Roller</g-link>
       </nav>
     </header>
     <slot/>
