@@ -36,7 +36,7 @@ export default {
                 details += String(this.modifier)
             }
             else if (this.modifier > 0) {
-                details += '+' + String(this.modifier)
+                details += `+${this.modifier}`
             }
             this.results = 0
             return details
