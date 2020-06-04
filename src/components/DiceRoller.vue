@@ -1,7 +1,7 @@
 <template>
     <div>
         <button @click="rollDice">Roll Dice</button>
-        <h3>{{numDice}}d{{dieType}}+{{modifier}} <span v-html="this.results"></span></h3>
+        <h3>{{details}} <span v-html="this.results"></span></h3>
     </div>
 </template>
 
@@ -27,6 +27,19 @@ export default {
     data () {
         return {
             results: 0
+        }
+    },
+    computed: {
+        details() {
+            let details = String(this.numDice) + 'd' + String(this.dieType)
+            if (this.modifier < 0) {
+                details += String(this.modifier)
+            }
+            else if (this.modifier > 0) {
+                details += '+' + String(this.modifier)
+            }
+            this.results = 0
+            return details
         }
     },
     methods: {
