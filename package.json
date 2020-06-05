@@ -3,8 +3,8 @@
   "private": true,
   "scripts": {
     "test": "jest",
-    "lint": "eslint src",
-    "lint:fix": "eslint src --fix",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "build": "gridsome build",
     "develop": "gridsome develop",
     "explore": "gridsome explore"
@@ -49,6 +49,11 @@
     }
   },
   "eslintConfig": {
+    "env": {
+      "browser": true,
+      "amd": true,
+      "node": true
+    },
     "root": true,
     "extends": [
       "plugin:vue/essential",
@@ -58,7 +63,7 @@
       "eslint:recommended"
     ],
     "ignorePatterns": [
-      "src/main.js"
+      "dist/"
     ]
   }
 }
