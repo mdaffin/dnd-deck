@@ -29,6 +29,8 @@ jobs:
             ${{ runner.OS }}-
       - run: npm ci
       - run: npm test
+        env:
+          CI: true
       - run: npm run build
         env:
           CI: true
@@ -36,7 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js 14
         uses: actions/setup-node@v1
         with:
           node-version: 14
@@ -49,10 +51,6 @@ jobs:
             ${{ runner.OS }}-node-
             ${{ runner.OS }}-
       - run: npm ci
-      - name: Run linters
-        uses: samuelmeuli/lint-action@v1
-        with:
-          github_token: ${{ secrets.github_token }}
-          eslint: true
+      - run: npm run lint
         env:
           CI: true
