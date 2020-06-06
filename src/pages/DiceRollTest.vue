@@ -24,20 +24,20 @@
             <input class="form-input" type="number" id="modifier" name="modifier" value="0" v-model.number="rollData.mod">
         </div>
         <div class="form-group">
-            <DiceRoller v-bind:numDice="rollData.numDice" v-bind:dieType="rollData.dieType" v-bind:modifier="rollData.mod" />
+            <Dice :numDice="rollData.numDice" :dieType="rollData.dieType" :modifier="rollData.mod" />
         </div>
     </div>
     </Layout>
 </template>
 
 <script>
-import DiceRoller from '~/components/DiceRoller.vue'
+import Dice from '@/components/Dice.vue'
 export default {
     metaInfo: {
         title: 'Dice Roller'
     },
     components: {
-        DiceRoller
+        Dice
     },
     data () {
         return {
