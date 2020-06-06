@@ -16,10 +16,11 @@
     "gridsome": "^0.7.0"
   },
   "devDependencies": {
+    "babel-core": "^7.0.0-bridge.0",
+    "@babel/core": "^7.10.0",
+    "@babel/preset-env": "^7.10.2",
     "@vue/test-utils": "^1.0.3",
-    "babel-core": "^6.26.3",
     "babel-jest": "^26.0.1",
-    "babel-preset-env": "^1.7.0",
     "eslint": "^7.1.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-jest": "^23.13.2",
@@ -56,6 +57,8 @@
       "plugin:jest/recommended",
       "eslint:recommended"
     ],
-    "ignorePatterns": ["src/main.js"]
+    "ignorePatterns": [
+      "src/main.js"
+    ]
   }
 }
