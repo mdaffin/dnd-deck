@@ -1,18 +1,18 @@
 <template>
   <div>
     <Dice :modifier="Number(mod)">
-        <label>{{ label }}: </label><span class="value">{{ value }}</span>
-        <label> Mod: </label><span class="mod">{{ mod }}</span>
+      <label>{{ label }}: </label><span class="value">{{ value }}</span>
+      <label> Mod: </label><span class="mod">{{ mod }}</span>
     </Dice>
   </div>
 </template>
 
 <script>
-import Dice from '@/components/Dice.vue'
+import Dice from "@/components/Dice.vue";
 export default {
   props: ["label", "value"],
   components: {
-        Dice
+    Dice,
   },
   computed: {
     mod() {
