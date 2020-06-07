@@ -21,13 +21,12 @@
 <script>
 export default {
   metaInfo: {
-    title: 'Home'
-  }
-}
+    title: "Home",
+  },
+};
 </script>
 
-<style>
-</style>
+<style></style>
 
 <page-query>
 query {
