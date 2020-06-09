@@ -1,14 +1,16 @@
 <template>
-<Tooltip>
-        <button v-on:click="rollDice($event)"><slot>{{details}}</slot>: <strong><span v-html="this.results"></span></strong></button>
-        <template v-slot:tooltiptext>
-            {{diceValues}}
-        </template>
-</Tooltip>
+    <div>
+        <button v-on:click="rollDice($event)"><slot>{{details}}</slot></button>
+        <span class="tooltiptext" v-if='this.rolls.length' v-on:click="reset()">
+            <strong>
+                Rolled: <span v-html="this.results"></span>
+                {{diceValues}}
+            </strong>
+        </span>
+    </div>
 </template>
 
 <script>
-import Tooltip from "@/components/Tooltip.vue"
 export default {
     name: 'Dice',
     props: {
@@ -31,23 +33,27 @@ export default {
             rolls: []
         }
     },
-    components: {
-        Tooltip
-    },
     computed: {
         diceValues() {
-            let text = ""
+            let details = " = "
+            if (this.rolls.lenght < 0){
+                return ""
+            }
+
             if (this.rolls.length > 1) {
-                text = "rolls: "
-                return this.rolls.reduce((text, val) => `${text}` + `${val}, `, text)
+                details += `( ${this.rolls.reduce((text, val) => `${text} + ${val} `)} )`
             }
             else if (this.rolls.length == 1){
-                text = "roll: "
-                return text + `${this.rolls[0]}`
+                details += `${this.rolls[0]}`
             }
-            else {
-                return text
+
+            if (this.modifier < 0) {
+                details += ` ${this.modifier}`
             }
+            else if (this.modifier > 0) {
+                details += ` + ${this.modifier}`
+            }
+            return details
         },
         details() {
             let details = `${this.numDice}d${this.dieType}`
@@ -62,6 +68,9 @@ export default {
         }
     },
     methods: {
+        reset() {
+            this.rolls=[]
+        },
         rollDice(event) {
             if (this.numDice <= 0) {
                 throw new RangeError("The number of dice cannot be <= 0")
@@ -78,3 +87,18 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.tooltiptext {
+  display: inline-block;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 5px;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+</style>
