@@ -64,7 +64,10 @@ export default {
             if (this.dieType <= 0){
                 throw new RangeError("The die type cannot be <= 0")
             }
-            this.rolls = Array(this.numDice).fill(Math.floor(Math.random()*this.dieType)+1)
+            this.rolls = []
+            for (let i=0; i < this.numDice; ++i){
+                this.rolls.push(Math.floor(Math.random()*this.dieType)+1)
+            }
             this.results = this.rolls.reduce((sum, val) => sum + val, 0) + this.modifier
         }
     }
