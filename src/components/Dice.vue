@@ -1,10 +1,14 @@
 <template>
-    <span>
+<Tooltip>
         <button v-on:click="rollDice($event)"><slot>{{details}}</slot>: <strong><span v-html="this.results"></span></strong></button>
-    </span>
+        <template v-slot:tooltiptext>
+            {{diceValues}}
+        </template>
+</Tooltip>
 </template>
 
 <script>
+import Tooltip from "@/components/Tooltip.vue"
 export default {
     name: 'Dice',
     props: {
@@ -23,10 +27,23 @@ export default {
     },
     data () {
         return {
-            results: 0
+            results: 0,
+            rolls: []
         }
     },
+    components: {
+        Tooltip
+    },
     computed: {
+        diceValues() {
+            let text = "rolls: "
+            if (this.rolls.length > 1) {
+                return this.rolls.reduce((text, val) => `${text}` + `${val}, `, text)
+            }
+            else if (this.rolls.length == 1){
+                return text + `${this.rolls[0]}`
+            }
+        },
         details() {
             let details = `${this.numDice}d${this.dieType}`
             if (this.modifier < 0) {
@@ -47,12 +64,8 @@ export default {
             if (this.dieType <= 0){
                 throw new RangeError("The die type cannot be <= 0")
             }
-            let result = 0
-            for (let i=0; i < this.numDice; i++) {
-                result += Math.floor(Math.random()* this.dieType) + 1
-            }
-            result += this.modifier
-            this.results = result
+            this.rolls = Array(this.numDice).fill(Math.floor(Math.random()*this.dieType)+1)
+            this.results = this.rolls.reduce((sum, val) => sum + val, 0) + this.modifier
         }
     }
 }
