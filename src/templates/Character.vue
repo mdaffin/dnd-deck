@@ -1,11 +1,11 @@
 <template>
   <Layout>
-    <h1>{{$page.character.name}}</h1>
+    <h1>{{ $page.character.name }}</h1>
     <label>Race: </label>
-    <span>{{race.name}}</span>
-    <span v-if="subrace"> ({{subrace.name}})</span>
-    <br/>
-    <label>Gender: </label><span>{{$page.character.gender}}</span>
+    <span>{{ race.name }}</span>
+    <span v-if="subrace"> ({{ subrace.name }})</span>
+    <br />
+    <label>Gender: </label><span>{{ $page.character.gender }}</span>
     <h2>Ability Scores</h2>
     <Ability label="Strength" :value="ability_scores.strength" />
     <Ability label="Dexterity" :value="ability_scores.dexterity" />
@@ -15,10 +15,14 @@
     <Ability label="Charisma" :value="ability_scores.charisma" />
     <h2>Race Features</h2>
     <h3>
-      <span>{{race.name}}</span>
-      <span v-if="subrace"> ({{subrace.name}})</span>
+      <span>{{ race.name }}</span>
+      <span v-if="subrace"> ({{ subrace.name }})</span>
     </h3>
-    <FeatureList v-for="(feature, index) in race_features" :key="index" :feature="feature" />
+    <FeatureList
+      v-for="(feature, index) in race_features"
+      :key="index"
+      :feature="feature"
+    />
     <h3>Description</h3>
     <div class="post__content" v-html="$page.character.content" />
   </Layout>
@@ -33,7 +37,7 @@ export default {
     Ability,
   },
   metaInfo: {
-    title: `Character`
+    title: `Character`,
   },
   computed: {
     race() {
@@ -41,7 +45,7 @@ export default {
     },
     subrace() {
       return this.race.subraces?.find(
-        subrace => subrace.name === this.$page.character.subrace
+        (subrace) => subrace.name === this.$page.character.subrace
       );
     },
     race_features() {
@@ -58,10 +62,10 @@ export default {
         intelligence: this.$page.character.ability_scores.intelligence.base,
         wisdom: this.$page.character.ability_scores.wisdom.base,
         charisma: this.$page.character.ability_scores.charisma.base,
-      }
+      };
       return this.race_features
-        .filter(f => f.ability_scores)
-        .map(f => f.ability_scores)
+        .filter((f) => f.ability_scores)
+        .map((f) => f.ability_scores)
         .reduce((acc, cur) => {
           acc.strength += cur.strength || 0;
           acc.dexterity += cur.dexterity || 0;
@@ -72,7 +76,7 @@ export default {
           return acc;
         }, ability_scores);
     },
-  }
+  },
 };
 </script>
 
