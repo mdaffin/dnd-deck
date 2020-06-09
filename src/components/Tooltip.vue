@@ -1,5 +1,5 @@
 <template>
-    <div class="tooltip" v-if="hasTooltipText">
+    <div class="tooltip">
         <slot>
         </slot>
         <span class="tooltiptext">
@@ -11,11 +11,7 @@
 
 <script>
 export default {
-    name: "Tooltip",
-    computed: {
-        hasTooltipText() {
-            return this.$slots.tooltiptext;
-        }
+    name: "Tooltip"
     }
 }
 </script>

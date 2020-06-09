@@ -36,12 +36,17 @@ export default {
     },
     computed: {
         diceValues() {
-            let text = "rolls: "
+            let text = ""
             if (this.rolls.length > 1) {
+                text = "rolls: "
                 return this.rolls.reduce((text, val) => `${text}` + `${val}, `, text)
             }
             else if (this.rolls.length == 1){
+                text = "roll: "
                 return text + `${this.rolls[0]}`
+            }
+            else {
+                return text
             }
         },
         details() {
