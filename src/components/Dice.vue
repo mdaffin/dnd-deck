@@ -1,10 +1,15 @@
 <template>
-  <span>
-    <button v-on:click="rollDice">
-      <slot>{{ details }}</slot
-      >: <strong><span v-html="this.results"></span></strong>
+  <div>
+    <button v-on:click="rollDice()">
+      <slot>{{ details }}</slot>
     </button>
-  </span>
+    <span class="tooltiptext" v-if="this.rolls.length" v-on:click="reset()">
+      <strong>
+        Rolled: <span v-html="results"></span>
+        {{ diceValues }}
+      </strong>
+    </span>
+  </div>
 </template>
 
 <script>
@@ -26,10 +31,28 @@ export default {
   },
   data() {
     return {
-      results: 0,
+      rolls: [],
     };
   },
   computed: {
+    results() {
+      return this.rolls.reduce((sum, val) => (sum += val)) + this.modifier;
+    },
+    diceValues() {
+      let details = " = ";
+      if (this.rolls.length > 1) {
+        details += `( ${this.rolls.join(" + ")} )`;
+      } else if (this.rolls.length == 1) {
+        details += `${this.rolls[0]}`;
+      }
+
+      if (this.modifier < 0) {
+        details += ` ${this.modifier}`;
+      } else if (this.modifier > 0) {
+        details += ` + ${this.modifier}`;
+      }
+      return details;
+    },
     details() {
       let details = `${this.numDice}d${this.dieType}`;
       if (this.modifier < 0) {
@@ -41,6 +64,9 @@ export default {
     },
   },
   methods: {
+    reset() {
+      this.rolls = [];
+    },
     rollDice() {
       if (this.numDice <= 0) {
         throw new RangeError("The number of dice cannot be <= 0");
@@ -48,13 +74,27 @@ export default {
       if (this.dieType <= 0) {
         throw new RangeError("The die type cannot be <= 0");
       }
-      let result = 0;
-      for (let i = 0; i < this.numDice; i++) {
-        result += Math.floor(Math.random() * this.dieType) + 1;
+      this.rolls = [];
+      for (let i = 0; i < this.numDice; ++i) {
+        const roll = Math.floor(Math.random() * this.dieType) + 1;
+        this.rolls.push(roll);
       }
-      result += this.modifier;
-      this.results = result;
     },
   },
 };
 </script>
+
+<style scoped>
+.tooltiptext {
+  display: inline-block;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 5px;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+</style>
