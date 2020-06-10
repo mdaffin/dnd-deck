@@ -35,13 +35,13 @@ export default {
     };
   },
   computed: {
-    results () {
-        return this.rolls.reduce((sum, val) => sum += val) + this.modifier
+    results() {
+      return this.rolls.reduce((sum, val) => (sum += val)) + this.modifier;
     },
     diceValues() {
-      let details = " = "
+      let details = " = ";
       if (this.rolls.length > 1) {
-        details += `( ${this.rolls.join(' + ')} )`;
+        details += `( ${this.rolls.join(" + ")} )`;
       } else if (this.rolls.length == 1) {
         details += `${this.rolls[0]}`;
       }
