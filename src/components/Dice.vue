@@ -5,7 +5,7 @@
     </button>
     <span class="tooltiptext" v-if="this.rolls.length" v-on:click="reset()">
       <strong>
-        Rolled: <span v-html="this.results"></span>
+        Rolled: <span v-html="results"></span>
         {{ diceValues }}
       </strong>
     </span>
@@ -31,21 +31,17 @@ export default {
   },
   data() {
     return {
-      results: 0,
       rolls: [],
     };
   },
   computed: {
+    results () {
+        return this.rolls.reduce((sum, val) => sum += val) + this.modifier
+    },
     diceValues() {
-      let details = " = ";
-      if (this.rolls.lenght < 0) {
-        return "";
-      }
-
+      let details = " = "
       if (this.rolls.length > 1) {
-        details += `( ${this.rolls.reduce(
-          (text, val) => `${text} + ${val} `
-        )} )`;
+        details += `( ${this.rolls.join(' + ')} )`;
       } else if (this.rolls.length == 1) {
         details += `${this.rolls[0]}`;
       }
@@ -69,7 +65,6 @@ export default {
   },
   methods: {
     reset() {
-      this.results = 0;
       this.rolls = [];
     },
     rollDice() {
@@ -81,10 +76,9 @@ export default {
       }
       this.rolls = [];
       for (let i = 0; i < this.numDice; ++i) {
-        this.rolls.push(Math.floor(Math.random() * this.dieType) + 1);
+        const roll = Math.floor(Math.random() * this.dieType) + 1;
+        this.rolls.push(roll);
       }
-      this.results =
-        this.rolls.reduce((sum, val) => sum + val, 0) + this.modifier;
     },
   },
 };
