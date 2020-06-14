@@ -14,6 +14,7 @@
 
 <script>
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Dice from '@/components/Dice.vue'
 export default {
   props: ["label", "value"],
@@ -21,6 +22,9 @@ export default {
         Dice
 =======
 import Dice from "@/components/Dice.vue";
+=======
+import Dice from "~/components/Dice.vue";
+>>>>>>> 8c824f393c91702dc6637b193b56e73175e87b55
 export default {
   props: ["label", "value"],
   components: {
