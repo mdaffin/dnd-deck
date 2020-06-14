@@ -23,7 +23,7 @@ describe("Ability", () => {
     [17, "+3"],
     [18, "+4"],
     [19, "+4"],
-    [20, "+5"],
+    [20, "+5"]
   ])(
     "value %i should create mod %i ((value - 10)/2) rounded down",
     (value, mod) => {

@@ -1,14 +1,12 @@
 {
-  "name": "gridsome-dnd",
+  "name": "dnd-deck",
   "private": true,
   "scripts": {
-    "dev": "nuxt"
+    "develop": "nuxt",
+    "build": "nuxt generate --fail-on-error"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.11.0",
     "nuxt": "^2.12.2"
-  },
-  "devDependencies": {
-    "koa": "^2.12.0"
   }
 }
