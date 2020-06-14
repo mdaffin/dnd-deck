@@ -8,11 +8,11 @@
 </template>
 
 <script>
-import Dice from '@/components/Dice.vue'
+import Dice from "@/components/Dice.vue";
 export default {
   props: ["label", "value"],
   components: {
-        Dice
+    Dice,
   },
   computed: {
     mod() {
