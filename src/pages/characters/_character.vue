@@ -29,8 +29,8 @@
 </template>
 
 <script>
-import FeatureList from "@/components/FeatureList";
-import Ability from "@/components/Ability";
+import FeatureList from "~/components/FeatureList";
+import Ability from "~/components/Ability";
 export default {
   components: {
     FeatureList,
