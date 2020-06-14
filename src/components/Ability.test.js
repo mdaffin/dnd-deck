@@ -1,5 +1,5 @@
 import { shallowMount } from "@vue/test-utils";
-import Ability from "@/components/Ability.vue";
+import Ability from "~/components/Ability.vue";
 
 describe("Ability", () => {
   it.each([
