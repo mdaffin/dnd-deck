@@ -34,14 +34,16 @@ import Ability from "~/components/Ability";
 export default {
   components: {
     FeatureList,
-    Ability
+    Ability,
   },
   async asyncData({ params }) {
-    console.info({params})
+    console.info({ params });
     try {
-      const character = await import(`~/content/characters/${params.character}.json`);
+      const character = await import(
+        `~/content/characters/${params.character}.json`
+      );
       const race = await import(`~/content${character.race}`);
-      return {character, race};
+      return { character, race };
     } catch (err) {
       console.error(err);
       return false;
@@ -50,7 +52,7 @@ export default {
   computed: {
     subrace() {
       return this.race.subraces.find(
-        subrace => subrace.name === this.character.subrace
+        (subrace) => subrace.name === this.character.subrace
       );
     },
     race_features() {
@@ -66,11 +68,11 @@ export default {
         dexterity: this.character.ability_scores.dexterity.base,
         intelligence: this.character.ability_scores.intelligence.base,
         wisdom: this.character.ability_scores.wisdom.base,
-        charisma: this.character.ability_scores.charisma.base
+        charisma: this.character.ability_scores.charisma.base,
       };
       return this.race_features
-        .filter(f => f.ability_scores)
-        .map(f => f.ability_scores)
+        .filter((f) => f.ability_scores)
+        .map((f) => f.ability_scores)
         .reduce((acc, cur) => {
           acc.strength += cur.strength || 0;
           acc.dexterity += cur.dexterity || 0;
@@ -80,7 +82,7 @@ export default {
           acc.charisma += cur.charisma || 0;
           return acc;
         }, ability_scores);
-    }
-  }
+    },
+  },
 };
 </script>

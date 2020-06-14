@@ -12,7 +12,7 @@ import Dice from "~/components/Dice.vue";
 export default {
   props: ["label", "value"],
   components: {
-    Dice
+    Dice,
   },
   computed: {
     mod() {
@@ -22,7 +22,7 @@ export default {
       } else {
         return `${mod}`;
       }
-    }
-  }
+    },
+  },
 };
 </script>

@@ -15,15 +15,17 @@
 import FeatureList from "~/components/FeatureList";
 export default {
   components: {
-    FeatureList
+    FeatureList,
   },
   async asyncData({ params }) {
     try {
-      return {charClass: await import(`~/content/classes/${params.charClass}.json`)};
+      return {
+        charClass: await import(`~/content/classes/${params.charClass}.json`),
+      };
     } catch (err) {
       console.error(err);
       return false;
     }
-  }
+  },
 };
 </script>

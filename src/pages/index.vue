@@ -26,23 +26,23 @@
 <script>
 export default {
   async asyncData() {
-    const key_to_href = key => key.replace(/^\.(.*)\.json$/, "$1");
+    const key_to_href = (key) => key.replace(/^\.(.*)\.json$/, "$1");
     const resolve = require.context("~/content", true, /\.json$/);
-    const filter = collection =>
+    const filter = (collection) =>
       resolve
         .keys()
-        .filter(key => key.startsWith(collection))
-        .map(key => ({ href: key_to_href(key), ...resolve(key) }));
+        .filter((key) => key.startsWith(collection))
+        .map((key) => ({ href: key_to_href(key), ...resolve(key) }));
     return {
       characters: filter("./characters/"),
       races: filter("./races/"),
-      classes: filter("./classes/")
+      classes: filter("./classes/"),
     };
   },
   data() {
     return {
-      prefix: "characters"
+      prefix: "characters",
     };
-  }
+  },
 };
 </script>

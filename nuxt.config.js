@@ -1,3 +1,3 @@
 export default {
-  srcDir: 'src/'
-}
+  srcDir: "src/",
+};

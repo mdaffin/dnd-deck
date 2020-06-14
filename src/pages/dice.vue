@@ -58,20 +58,20 @@
 import Dice from "~/components/Dice.vue";
 export default {
   metaInfo: {
-    title: "Dice Roller"
+    title: "Dice Roller",
   },
   components: {
-    Dice
+    Dice,
   },
   data() {
     return {
       rollData: {
         numDice: 0,
         dieType: 0,
-        mod: 0
-      }
+        mod: 0,
+      },
     };
-  }
+  },
 };
 </script>
 

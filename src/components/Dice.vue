@@ -18,20 +18,20 @@ export default {
   props: {
     numDice: {
       type: Number,
-      default: 1
+      default: 1,
     },
     dieType: {
       type: Number,
-      default: 20
+      default: 20,
     },
     modifier: {
       type: Number,
-      default: 0
-    }
+      default: 0,
+    },
   },
   data() {
     return {
-      rolls: []
+      rolls: [],
     };
   },
   computed: {
@@ -61,7 +61,7 @@ export default {
         details += `+${this.modifier}`;
       }
       return details;
-    }
+    },
   },
   methods: {
     reset() {
@@ -79,8 +79,8 @@ export default {
         const roll = Math.floor(Math.random() * this.dieType) + 1;
         this.rolls.push(roll);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

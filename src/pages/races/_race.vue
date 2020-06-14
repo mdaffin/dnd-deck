@@ -24,15 +24,15 @@
 import FeatureList from "~/components/FeatureList";
 export default {
   components: {
-    FeatureList
+    FeatureList,
   },
   async asyncData({ params }) {
     try {
-      return {race: await import(`~/content/races/${params.race}.json`)};
+      return { race: await import(`~/content/races/${params.race}.json`) };
     } catch (err) {
       console.error(err);
       return false;
     }
-  }
+  },
 };
 </script>
