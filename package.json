@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "test": "jest",
-    "lint": "eslint '**/*.vue' '**/*.js'",
+    "lint": "eslint \"**/*.vue\" \"**/*.js\"",
     "lint:fix": "npm run lint -- --fix",
     "build": "gridsome build",
     "develop": "gridsome develop",
