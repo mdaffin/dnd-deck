@@ -26,9 +26,15 @@ export default {
   components: {
     FeatureList,
   },
-  async asyncData({ params }) {
+  async asyncData({ params, $content }) {
     try {
-      return { race: await import(`~/content/races/${params.race}.json`) };
+      return {
+        race: (
+          await $content("races")
+            .where({ path: `/races/${params.race}` })
+            .fetch()
+        )[0],
+      };
     } catch (err) {
       console.error(err);
       return false;
