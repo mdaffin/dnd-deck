@@ -17,10 +17,14 @@ export default {
   components: {
     FeatureList,
   },
-  async asyncData({ params }) {
+  async asyncData({ params, $content }) {
     try {
       return {
-        charClass: await import(`~/content/classes/${params.charClass}.json`),
+        charClass: (
+          await $content("classes")
+            .where({ path: `/classes/${params.charClass}` })
+            .fetch()
+        )[0],
       };
     } catch (err) {
       console.error(err);

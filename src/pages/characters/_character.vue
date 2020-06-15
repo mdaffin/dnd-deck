@@ -36,13 +36,16 @@ export default {
     FeatureList,
     Ability,
   },
-  async asyncData({ params }) {
-    console.info({ params });
+  async asyncData({ params, $content }) {
     try {
-      const character = await import(
-        `~/content/characters/${params.character}.json`
-      );
-      const race = await import(`~/content${character.race}`);
+      const character = (
+        await $content("characters")
+          .where({ path: `/characters/${params.character}` })
+          .fetch()
+      )[0];
+      const race = (
+        await $content("races").where({ name: character.race }).fetch()
+      )[0];
       return { character, race };
     } catch (err) {
       console.error(err);
