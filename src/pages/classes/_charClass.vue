@@ -17,15 +17,9 @@ export default {
   components: {
     FeatureList,
   },
-  async asyncData({ params, $content }) {
+  async asyncData({ params, app }) {
     try {
-      return {
-        charClass: (
-          await $content("classes")
-            .where({ path: `/classes/${params.charClass}` })
-            .fetch()
-        )[0],
-      };
+      return { charClass: await app.charClass(params.charClass) };
     } catch (err) {
       console.error(err);
       return false;

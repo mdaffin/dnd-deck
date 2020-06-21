@@ -26,15 +26,9 @@ export default {
   components: {
     FeatureList,
   },
-  async asyncData({ params, $content }) {
+  async asyncData({ params, app }) {
     try {
-      return {
-        race: (
-          await $content("races")
-            .where({ path: `/races/${params.race}` })
-            .fetch()
-        )[0],
-      };
+      return { race: await app.race(params.race) };
     } catch (err) {
       console.error(err);
       return false;

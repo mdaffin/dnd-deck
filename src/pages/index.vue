@@ -25,11 +25,11 @@
 
 <script>
 export default {
-  async asyncData({ $content }) {
+  async asyncData({ $content, app }) {
     return {
-      characters: await $content("characters").only(["name", "path"]).fetch(),
-      races: await $content("races").only(["name", "path"]).fetch(),
-      classes: await $content("classes").only(["name", "path"]).fetch(),
+      characters: await app.characters(),
+      races: await app.races(),
+      classes: await app.charClasses(),
     };
   },
   data() {

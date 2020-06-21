@@ -1,4 +1,4 @@
 export default {
   srcDir: "src/",
-  modules: ["@nuxt/content"],
+  plugins: ["~/plugins/dnd-content"],
 };
