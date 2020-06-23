@@ -17,9 +17,9 @@ export default {
   components: {
     FeatureList,
   },
-  async asyncData({ params, app }) {
+  async asyncData({ params, app: { $dndContent } }) {
     try {
-      return { charClass: await app.charClass(params.charClass) };
+      return { charClass: await $dndContent.charClass(params.charClass) };
     } catch (err) {
       console.error(err);
       return false;

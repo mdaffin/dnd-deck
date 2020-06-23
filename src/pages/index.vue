@@ -25,11 +25,11 @@
 
 <script>
 export default {
-  async asyncData({ $content, app }) {
+  async asyncData({ $content, app: { $dndContent } }) {
     return {
-      characters: await app.characters(),
-      races: await app.races(),
-      classes: await app.charClasses(),
+      characters: await $dndContent.characters(),
+      races: await $dndContent.races(),
+      classes: await $dndContent.charClasses(),
     };
   },
   data() {
