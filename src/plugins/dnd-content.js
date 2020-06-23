@@ -52,7 +52,7 @@ const logRateLimit = (response) => {
   );
 };
 
-export default ({ app }) => {
+export default ({ app }, inject) => {
   // TODO make these configuable and support multiple repos
   const owner = "mdaffin";
   const repo = "dnd-deck";
@@ -64,11 +64,32 @@ export default ({ app }) => {
   }
 
   const githubContent = new GitHubContent(owner, repo, path, token);
-  app.races = () => githubContent.loadAll("races");
-  app.characters = () => githubContent.loadAll("characters");
-  app.charClasses = () => githubContent.loadAll("classes");
 
-  app.race = (name) => githubContent.loadSingle("races", name);
-  app.character = (name) => githubContent.loadSingle("characters", name);
-  app.charClass = (name) => githubContent.loadSingle("classes", name);
+  inject("dndContent", {
+    races: () => githubContent.loadAll("races"),
+    characters: () => githubContent.loadAll("characters"),
+    charClasses: () => githubContent.loadAll("classes"),
+
+    race: (name) => githubContent.loadSingle("races", name),
+    character: (name) => githubContent.loadSingle("characters", name),
+    charClass: (name) => githubContent.loadSingle("classes", name),
+
+    abilityScores: (character, race) => {
+      const baseScores = Object.fromEntries(
+        Object.entries(character.ability_scores).map(([k, v]) => [k, v.base])
+      );
+      return race.features
+        .filter((f) => f.ability_scores)
+        .map((f) => f.ability_scores)
+        .reduce((acc, cur) => {
+          acc.strength += cur.strength || 0;
+          acc.dexterity += cur.dexterity || 0;
+          acc.consitiution += cur.consitiution || 0;
+          acc.intelligence += cur.intelligence || 0;
+          acc.wisdom += cur.wisdom || 0;
+          acc.charisma += cur.charisma || 0;
+          return acc;
+        }, baseScores);
+    },
+  });
 };

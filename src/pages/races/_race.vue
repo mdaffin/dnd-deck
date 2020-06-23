@@ -26,9 +26,9 @@ export default {
   components: {
     FeatureList,
   },
-  async asyncData({ params, app }) {
+  async asyncData({ params, app: { $dndContent } }) {
     try {
-      return { race: await app.race(params.race) };
+      return { race: await $dndContent.race(params.race) };
     } catch (err) {
       console.error(err);
       return false;
