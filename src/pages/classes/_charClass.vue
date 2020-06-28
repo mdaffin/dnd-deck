@@ -17,13 +17,20 @@ export default {
   components: {
     FeatureList,
   },
-  async asyncData({ params, app: { $dndContent } }) {
-    try {
-      return { charClass: await $dndContent.charClass(params.charClass) };
-    } catch (err) {
-      console.error(err);
-      return false;
+  async middleware({ store }) {
+    if (store.state.classes.length === 0) {
+      await store.dispatch("fetchData");
     }
+  },
+  computed: {
+    charClass() {
+      if (this.$store.state.classes) {
+        const className = this.$route.params.charClass.toLowerCase();
+        return this.$store.state.classes.find(
+          (c) => c.name.toLowerCase() == className
+        );
+      }
+    },
   },
 };
 </script>

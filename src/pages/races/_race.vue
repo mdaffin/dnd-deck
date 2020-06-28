@@ -26,13 +26,20 @@ export default {
   components: {
     FeatureList,
   },
-  async asyncData({ params, app: { $dndContent } }) {
-    try {
-      return { race: await $dndContent.race(params.race) };
-    } catch (err) {
-      console.error(err);
-      return false;
+  async middleware({ store }) {
+    if (store.state.races.length === 0) {
+      await store.dispatch("fetchData");
     }
+  },
+  computed: {
+    race() {
+      if (this.$store.state.races) {
+        const raceName = this.$route.params.race.toLowerCase();
+        return this.$store.state.races.find(
+          (c) => c.name.toLowerCase() == raceName
+        );
+      }
+    },
   },
 };
 </script>

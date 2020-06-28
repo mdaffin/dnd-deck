@@ -2,24 +2,28 @@
   <div>
     <h1>{{ character.name }}</h1>
     <label>Race: </label>
-    <span>{{ race.name }}</span>
-    <span v-if="subrace"> ({{ subrace.name }})</span>
+    <span>{{ character.race.name }}</span>
     <br />
     <label>Gender: </label><span>{{ character.gender }}</span>
     <h2>Ability Scores</h2>
-    <Ability label="Strength" :value="abilityScores.strength" />
-    <Ability label="Dexterity" :value="abilityScores.dexterity" />
-    <Ability label="Consitiution" :value="abilityScores.consitiution" />
-    <Ability label="Intelligence" :value="abilityScores.intelligence" />
-    <Ability label="Wisdom" :value="abilityScores.wisdom" />
-    <Ability label="Charisma" :value="abilityScores.charisma" />
+    <Ability label="Strength" :value="character.abilityScores.strength" />
+    <Ability label="Dexterity" :value="character.abilityScores.dexterity" />
+    <Ability
+      label="Consitiution"
+      :value="character.abilityScores.consitiution"
+    />
+    <Ability
+      label="Intelligence"
+      :value="character.abilityScores.intelligence"
+    />
+    <Ability label="Wisdom" :value="character.abilityScores.wisdom" />
+    <Ability label="Charisma" :value="character.abilityScores.charisma" />
     <h2>Race Features</h2>
     <h3>
-      <span>{{ race.name }}</span>
-      <span v-if="subrace"> ({{ subrace.name }})</span>
+      <span>{{ character.race.name }}</span>
     </h3>
     <FeatureList
-      v-for="(feature, index) in raceFeatures"
+      v-for="(feature, index) in character.race.features"
       :key="index"
       :feature="feature"
     />
@@ -36,30 +40,19 @@ export default {
     FeatureList,
     Ability,
   },
-  async asyncData({ params, app: { $dndContent } }) {
-    try {
-      const character = await $dndContent.character(params.character);
-      const race = await $dndContent.race(character.race.toLowerCase());
-      return { character, race };
-    } catch (err) {
-      console.error(err);
-      return false;
+  async middleware({ store }) {
+    if (store.state.characters.length === 0) {
+      await store.dispatch("fetchData");
     }
   },
   computed: {
-    subrace() {
-      return this.race.subraces.find(
-        (subrace) => subrace.name === this.character.subrace
-      );
-    },
-    raceFeatures() {
-      if (this.subrace) {
-        return [...this.race.features, ...this.subrace.features];
+    character() {
+      if (this.$store.state.characters) {
+        const characterName = this.$route.params.character.toLowerCase();
+        return this.$store.state.characters.find(
+          (c) => c.name.toLowerCase() == characterName
+        );
       }
-      return this.race.features;
-    },
-    abilityScores() {
-      return this.$dndContent.abilityScores(this.character, this.race);
     },
   },
 };
