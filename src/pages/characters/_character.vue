@@ -7,19 +7,19 @@
     <br />
     <label>Gender: </label><span>{{ character.gender }}</span>
     <h2>Ability Scores</h2>
-    <Ability label="Strength" :value="abilityScores.strength" />
-    <Ability label="Dexterity" :value="abilityScores.dexterity" />
-    <Ability label="Consitiution" :value="abilityScores.consitiution" />
-    <Ability label="Intelligence" :value="abilityScores.intelligence" />
-    <Ability label="Wisdom" :value="abilityScores.wisdom" />
-    <Ability label="Charisma" :value="abilityScores.charisma" />
+    <Ability label="Strength" :value="ability_scores.strength" />
+    <Ability label="Dexterity" :value="ability_scores.dexterity" />
+    <Ability label="Consitiution" :value="ability_scores.consitiution" />
+    <Ability label="Intelligence" :value="ability_scores.intelligence" />
+    <Ability label="Wisdom" :value="ability_scores.wisdom" />
+    <Ability label="Charisma" :value="ability_scores.charisma" />
     <h2>Race Features</h2>
     <h3>
       <span>{{ race.name }}</span>
       <span v-if="subrace"> ({{ subrace.name }})</span>
     </h3>
     <FeatureList
-      v-for="(feature, index) in raceFeatures"
+      v-for="(feature, index) in race_features"
       :key="index"
       :feature="feature"
     />
@@ -36,10 +36,16 @@ export default {
     FeatureList,
     Ability,
   },
-  async asyncData({ params, app: { $dndContent } }) {
+  async asyncData({ params, $content }) {
     try {
-      const character = await $dndContent.character(params.character);
-      const race = await $dndContent.race(character.race.toLowerCase());
+      const character = (
+        await $content("characters")
+          .where({ path: `/characters/${params.character}` })
+          .fetch()
+      )[0];
+      const race = (
+        await $content("races").where({ name: character.race }).fetch()
+      )[0];
       return { character, race };
     } catch (err) {
       console.error(err);
@@ -52,14 +58,33 @@ export default {
         (subrace) => subrace.name === this.character.subrace
       );
     },
-    raceFeatures() {
+    race_features() {
       if (this.subrace) {
         return [...this.race.features, ...this.subrace.features];
       }
       return this.race.features;
     },
-    abilityScores() {
-      return this.$dndContent.abilityScores(this.character, this.race);
+    ability_scores() {
+      const ability_scores = {
+        strength: this.character.ability_scores.strength.base,
+        consitiution: this.character.ability_scores.consitiution.base,
+        dexterity: this.character.ability_scores.dexterity.base,
+        intelligence: this.character.ability_scores.intelligence.base,
+        wisdom: this.character.ability_scores.wisdom.base,
+        charisma: this.character.ability_scores.charisma.base,
+      };
+      return this.race_features
+        .filter((f) => f.ability_scores)
+        .map((f) => f.ability_scores)
+        .reduce((acc, cur) => {
+          acc.strength += cur.strength || 0;
+          acc.dexterity += cur.dexterity || 0;
+          acc.consitiution += cur.consitiution || 0;
+          acc.intelligence += cur.intelligence || 0;
+          acc.wisdom += cur.wisdom || 0;
+          acc.charisma += cur.charisma || 0;
+          return acc;
+        }, ability_scores);
     },
   },
 };
