@@ -17,9 +17,15 @@ export default {
   components: {
     FeatureList,
   },
-  async asyncData({ params, app: { $dndContent } }) {
+  async asyncData({ params, $content }) {
     try {
-      return { charClass: await $dndContent.charClass(params.charClass) };
+      return {
+        charClass: (
+          await $content("classes")
+            .where({ path: `/classes/${params.charClass}` })
+            .fetch()
+        )[0],
+      };
     } catch (err) {
       console.error(err);
       return false;

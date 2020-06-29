@@ -1,5 +1,5 @@
 export default {
   srcDir: "src/",
-  plugins: ["~/plugins/dnd-content"],
+  modules: ["@nuxt/content"],
   css: ["fontsource-roboto/latin.css", "~/css/main.css"],
 };

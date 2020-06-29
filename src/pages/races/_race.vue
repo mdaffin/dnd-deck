@@ -26,9 +26,15 @@ export default {
   components: {
     FeatureList,
   },
-  async asyncData({ params, app: { $dndContent } }) {
+  async asyncData({ params, $content }) {
     try {
-      return { race: await $dndContent.race(params.race) };
+      return {
+        race: (
+          await $content("races")
+            .where({ path: `/races/${params.race}` })
+            .fetch()
+        )[0],
+      };
     } catch (err) {
       console.error(err);
       return false;
