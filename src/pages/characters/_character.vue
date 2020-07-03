@@ -30,7 +30,7 @@
 
 <script>
 import FeatureList from "~/components/FeatureList";
-import Ability from "~/components/Ability";
+import Ability from "~/components/character/Ability";
 export default {
   components: {
     FeatureList,

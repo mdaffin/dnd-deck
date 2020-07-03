@@ -1,8 +1,8 @@
 <template>
   <div>
-    <Dice :modifier="Number(mod)">
+    <Dice class="dice" :modifier="mod">
       <label>{{ label }}: </label><span class="value">{{ value }}</span>
-      <label> Mod: </label><span class="mod">{{ mod }}</span>
+      <label> Mod: </label><span class="mod">{{ displayMod }}</span>
     </Dice>
   </div>
 </template>
@@ -16,13 +16,21 @@ export default {
   },
   computed: {
     mod() {
-      let mod = Math.floor((this.value - 10) / 2);
-      if (mod >= 0) {
-        return `+${mod}`;
+      return Math.floor((this.value - 10) / 2);
+    },
+    displayMod() {
+      if (this.mod >= 0) {
+        return `+${this.mod}`;
       } else {
-        return `${mod}`;
+        return `${this.mod}`;
       }
     },
   },
 };
 </script>
+
+<style scoped>
+.dice {
+  display: inline;
+}
+</style>
