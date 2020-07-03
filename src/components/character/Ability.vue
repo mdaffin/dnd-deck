@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Dice :modifier="Number(mod)">
+    <Dice class="dice" :modifier="Number(mod)">
       <label>{{ label }}: </label><span class="value">{{ value }}</span>
       <label> Mod: </label><span class="mod">{{ mod }}</span>
     </Dice>
@@ -26,3 +26,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.dice {
+  display: inline;
+}
+</style>
