@@ -32,15 +32,15 @@ export default {
 
 <style scoped>
 .ability {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.05);
   transition: 0.3s;
   width: 80px;
-  border-radius: 5px;
+  border-radius: 10px;
   margin: 8px;
 }
 
 .ability:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .container {
