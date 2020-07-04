@@ -32,15 +32,15 @@ export default {
 
 <style scoped>
 .ability {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border: 2px solid #eee;
   transition: 0.3s;
   width: 80px;
-  border-radius: 5px;
+  border-radius: 10px;
   margin: 8px;
 }
 
 .ability:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  background-color: #eee;
 }
 
 .container {
@@ -48,11 +48,11 @@ export default {
 }
 
 .value {
-  font-size: 32px;
+  font-size: 2.5rem;
 }
 
 label {
-  font-size: 9px;
+  font-size: 0.6rem;
   color: #666;
 }
 </style>

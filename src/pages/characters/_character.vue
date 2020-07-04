@@ -1,19 +1,7 @@
 <template>
-  <div>
-    <h1>{{ character.name }}</h1>
-    <label>Race: </label>
-    <span>{{ race.name }}</span>
-    <span v-if="subrace"> ({{ subrace.name }})</span>
-    <br />
-    <label>Gender: </label><span>{{ character.gender }}</span>
-    <Abilities
-      :strength="ability_scores.strength"
-      :dexterity="ability_scores.dexterity"
-      :constitution="ability_scores.constitution"
-      :intelligence="ability_scores.intelligence"
-      :wisdom="ability_scores.wisdom"
-      :charisma="ability_scores.charisma"
-    />
+  <div class="container">
+    <Details class="details" :details="details" />
+    <Abilities :abilityScores="ability_scores" />
     <h2>Race Features</h2>
     <h3>
       <span>{{ race.name }}</span>
@@ -32,10 +20,13 @@
 <script>
 import FeatureList from "~/components/FeatureList";
 import Abilities from "~/components/character/Abilities";
+import Details from "~/components/character/Details";
+
 export default {
   components: {
     FeatureList,
     Abilities,
+    Details,
   },
   async asyncData({ params, $content }) {
     try {
@@ -54,6 +45,16 @@ export default {
     }
   },
   computed: {
+    details() {
+      return {
+        name: this.character.name,
+        playerName: this.character.playerName,
+        race: this.character.race.name,
+        subrace: this.subrace.name,
+        gender: this.character.gender,
+        age: this.character.age,
+      };
+    },
     subrace() {
       return this.race.subraces.find(
         (subrace) => subrace.name === this.character.subrace
@@ -90,3 +91,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.details {
+  flex-wrap: wrap;
+}
+</style>
