@@ -85,6 +85,15 @@ export default {
 </script>
 
 <style scoped>
+button {
+  font-size: 100%;
+  font-family: inherit;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  width: 100%;
+}
 .tooltiptext {
   display: inline-block;
   background-color: black;

@@ -1,8 +1,11 @@
 <template>
-  <div>
+  <div class="ability">
     <Dice class="dice" :modifier="mod">
-      <label>{{ label }}: </label><span class="value">{{ value }}</span>
-      <label> Mod: </label><span class="mod">{{ displayMod }}</span>
+      <div class="container">
+        <label>{{ label }}</label>
+        <div class="value">{{ value }}</div>
+        <div class="mod">{{ displayMod }}</div>
+      </div>
     </Dice>
   </div>
 </template>
@@ -11,9 +14,7 @@
 import Dice from "~/components/Dice.vue";
 export default {
   props: ["label", "value"],
-  components: {
-    Dice,
-  },
+  components: { Dice },
   computed: {
     mod() {
       return Math.floor((this.value - 10) / 2);
@@ -30,7 +31,27 @@ export default {
 </script>
 
 <style scoped>
-.dice {
-  display: inline;
+.ability {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 80px;
+  border-radius: 5px;
+}
+
+.ability:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.container {
+  padding: 8px;
+}
+
+.value {
+  font-size: 32px;
+}
+
+label {
+  font-size: 9px;
+  color: #666;
 }
 </style>
