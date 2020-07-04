@@ -32,7 +32,7 @@ export default {
 
 <style scoped>
 .ability {
-  background-color: rgba(0, 0, 0, 0.05);
+  border: 2px solid #eee;
   transition: 0.3s;
   width: 80px;
   border-radius: 10px;
@@ -40,7 +40,7 @@ export default {
 }
 
 .ability:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: #eee;
 }
 
 .container {
