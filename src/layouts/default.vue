@@ -45,7 +45,7 @@ header {
 .logo-dnd {
   font-size: 10px;
   font-weight: bold;
-  margin-bottom: -10px;
+  margin-bottom: -8px;
 }
 
 .logo-deck {

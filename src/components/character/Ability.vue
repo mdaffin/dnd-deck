@@ -36,6 +36,7 @@ export default {
   transition: 0.3s;
   width: 80px;
   border-radius: 5px;
+  margin: 8px;
 }
 
 .ability:hover {

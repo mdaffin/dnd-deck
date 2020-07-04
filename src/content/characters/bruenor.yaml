@@ -9,7 +9,7 @@ ability_scores:
     base: 11
   dexterity:
     base: 14
-  consitiution:
+  constitution:
     base: 12
   intelligence:
     base: 13
