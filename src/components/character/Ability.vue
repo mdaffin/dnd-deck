@@ -48,11 +48,11 @@ export default {
 }
 
 .value {
-  font-size: 32px;
+  font-size: 2.5rem;
 }
 
 label {
-  font-size: 9px;
+  font-size: 0.6rem;
   color: #666;
 }
 </style>

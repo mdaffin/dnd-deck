@@ -1,25 +1,18 @@
 <template>
   <div>
-    <Ability label="Strength" :value="strength" />
-    <Ability label="Dexterity" :value="dexterity" />
-    <Ability label="Constitution" :value="constitution" />
-    <Ability label="Intelligence" :value="intelligence" />
-    <Ability label="Wisdom" :value="wisdom" />
-    <Ability label="Chrisma" :value="charisma" />
+    <Ability label="Strength" :value="abilityScores.strength" />
+    <Ability label="Dexterity" :value="abilityScores.dexterity" />
+    <Ability label="Constitution" :value="abilityScores.constitution" />
+    <Ability label="Intelligence" :value="abilityScores.intelligence" />
+    <Ability label="Wisdom" :value="abilityScores.wisdom" />
+    <Ability label="Chrisma" :value="abilityScores.charisma" />
   </div>
 </template>
 
 <script>
 import Ability from "./Ability.vue";
 export default {
-  props: [
-    "strength",
-    "dexterity",
-    "constitution",
-    "intelligence",
-    "wisdom",
-    "charisma",
-  ],
+  props: ["abilityScores"],
   components: { Ability },
 };
 </script>
