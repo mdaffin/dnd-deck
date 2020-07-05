@@ -1,7 +1,14 @@
 <template>
   <div class="container">
     <Details class="details" :details="details" />
-    <Abilities :abilityScores="ability_scores" />
+    <section class="abilities">
+      <Abilities :abilityScores="abilityScores" />
+      <section class="skills">
+        <ProficiencyBonus :value="2" />
+        <SavingThrows :savingThrows="savingThrows" />
+        <Skills :skills="skills" />
+      </section>
+    </section>
     <h2>Race Features</h2>
     <h3>
       <span>{{ race.name }}</span>
@@ -21,12 +28,18 @@
 import FeatureList from "~/components/FeatureList";
 import Abilities from "~/components/character/Abilities";
 import Details from "~/components/character/Details";
+import ProficiencyBonus from "~/components/character/ProficiencyBonus";
+import SavingThrows from "~/components/character/SavingThrows";
+import Skills from "~/components/character/Skills";
 
 export default {
   components: {
     FeatureList,
     Abilities,
     Details,
+    ProficiencyBonus,
+    SavingThrows,
+    Skills,
   },
   async asyncData({ params, $content }) {
     try {
@@ -43,6 +56,11 @@ export default {
       console.error(err);
       return false;
     }
+  },
+  methods: {
+    mod(value) {
+      return Math.floor((value - 10) / 2);
+    },
   },
   computed: {
     details() {
@@ -66,8 +84,111 @@ export default {
       }
       return this.race.features;
     },
-    ability_scores() {
-      const ability_scores = {
+    savingThrows() {
+      return {
+        strength: {
+          value: this.mod(this.abilityScores.strength),
+        },
+        constitution: {
+          value: this.mod(this.abilityScores.constitution),
+          proficiency: 2,
+        },
+        dexterity: {
+          value: this.mod(this.abilityScores.dexterity),
+        },
+        intelligence: {
+          value: this.mod(this.abilityScores.intelligence),
+        },
+        wisdom: {
+          value: this.mod(this.abilityScores.wisdom),
+        },
+        charisma: {
+          value: this.mod(this.abilityScores.charisma),
+          proficiency: 2,
+        },
+      };
+    },
+
+    skills() {
+      return [
+        {
+          name: "Athletics (Str)",
+          value: this.mod(this.abilityScores.strength),
+          proficiency: 2,
+        },
+        {
+          name: "Acrobatics (Dex)",
+          value: this.mod(this.abilityScores.dexterity),
+        },
+        {
+          name: "Sleight of Hand (Dex)",
+          value: this.mod(this.abilityScores.dexterity),
+        },
+        {
+          name: "Stealth (Dex)",
+          value: this.mod(this.abilityScores.dexterity),
+        },
+        {
+          name: "Arcana (Int)",
+          value: this.mod(this.abilityScores.intelligence),
+        },
+        {
+          name: "History (Int)",
+          value: this.mod(this.abilityScores.intelligence),
+        },
+        {
+          name: "Investigation (Int)",
+          value: this.mod(this.abilityScores.intelligence),
+        },
+        {
+          name: "Nature (Int)",
+          value: this.mod(this.abilityScores.intelligence),
+        },
+        {
+          name: "Religion (Int)",
+          value: this.mod(this.abilityScores.intelligence),
+        },
+        {
+          name: "Animal Handling (Wis)",
+          value: this.mod(this.abilityScores.wisdom),
+        },
+        {
+          name: "Insight (Wis)",
+          value: this.mod(this.abilityScores.wisdom),
+        },
+        {
+          name: "Medicine (Wis)",
+          value: this.mod(this.abilityScores.wisdom),
+        },
+        {
+          name: "Perception (Wis)",
+          value: this.mod(this.abilityScores.wisdom),
+        },
+        {
+          name: "Survival (Wis)",
+          value: this.mod(this.abilityScores.wisdom),
+        },
+        {
+          name: "Deception (Cha)",
+          value: this.mod(this.abilityScores.charisma),
+        },
+        {
+          name: "Intimidation (Cha)",
+          value: this.mod(this.abilityScores.charisma),
+        },
+        {
+          name: "Performance (Cha)",
+          value: this.mod(this.abilityScores.charisma),
+        },
+        {
+          name: "Persuasion (Cha)",
+          value: this.mod(this.abilityScores.charisma),
+        },
+      ];
+    },
+
+    abilityScores() {
+      const abilityScores = {
         strength: this.character.ability_scores.strength.base,
         constitution: this.character.ability_scores.constitution.base,
         dexterity: this.character.ability_scores.dexterity.base,
@@ -86,7 +207,7 @@ export default {
           acc.wisdom += cur.wisdom || 0;
           acc.charisma += cur.charisma || 0;
           return acc;
-        }, ability_scores);
+        }, abilityScores);
     },
   },
 };
@@ -95,5 +216,9 @@ export default {
 <style scoped>
 .details {
   flex-wrap: wrap;
+}
+
+section.abilities {
+  display: flex;
 }
 </style>
