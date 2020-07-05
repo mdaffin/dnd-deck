@@ -1,5 +1,5 @@
 <template>
-  <Dice :mod="total">
+  <Dice :modifier="total">
     <div class="row">
       <ProficiencyMarker :checked="value.proficiency !== undefined" />
       <input readonly :value="total" />
