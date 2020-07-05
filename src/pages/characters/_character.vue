@@ -5,8 +5,8 @@
       <Abilities :abilityScores="abilityScores" />
       <section class="skills">
         <ProficiencyBonus :value="2" />
-        <SavingThrows :savingThrows="savingThrows" />
-        <Skills :skills="skills" />
+        <Actions label="Saving Throws" :actions="savingThrows" />
+        <Actions label="Skills" :actions="skills" />
       </section>
     </section>
     <h2>Race Features</h2>
@@ -29,8 +29,7 @@ import FeatureList from "~/components/FeatureList";
 import Abilities from "~/components/character/Abilities";
 import Details from "~/components/character/Details";
 import ProficiencyBonus from "~/components/character/ProficiencyBonus";
-import SavingThrows from "~/components/character/SavingThrows";
-import Skills from "~/components/character/Skills";
+import Actions from "~/components/character/Actions";
 
 export default {
   components: {
@@ -38,8 +37,7 @@ export default {
     Abilities,
     Details,
     ProficiencyBonus,
-    SavingThrows,
-    Skills,
+    Actions,
   },
   async asyncData({ params, $content }) {
     try {
@@ -85,28 +83,34 @@ export default {
       return this.race.features;
     },
     savingThrows() {
-      return {
-        strength: {
+      return [
+        {
+          name: "Strength",
           value: this.mod(this.abilityScores.strength),
         },
-        constitution: {
+        {
+          name: "Constitution",
           value: this.mod(this.abilityScores.constitution),
           proficiency: 2,
         },
-        dexterity: {
+        {
+          name: "Dexterity",
           value: this.mod(this.abilityScores.dexterity),
         },
-        intelligence: {
+        {
+          name: "Intelligence",
           value: this.mod(this.abilityScores.intelligence),
         },
-        wisdom: {
+        {
+          name: "Wisdom",
           value: this.mod(this.abilityScores.wisdom),
         },
-        charisma: {
+        {
+          name: "Charisma",
           value: this.mod(this.abilityScores.charisma),
           proficiency: 2,
         },
-      };
+      ];
     },
 
     skills() {

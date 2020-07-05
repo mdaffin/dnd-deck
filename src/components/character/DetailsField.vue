@@ -1,13 +1,15 @@
 <template>
   <div class="field">
     <input readonly :value="value" />
-    <label>{{ label }}</label>
+    <Label>{{ label }}</Label>
   </div>
 </template>
 
 <script>
+import Label from "~/components/Label.vue";
 export default {
   props: ["label", "value"],
+  components: { Label },
 };
 </script>
 
