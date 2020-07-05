@@ -26,18 +26,12 @@
 
 <script>
 import FeatureList from "~/components/FeatureList";
-import Abilities from "~/components/character/Abilities";
-import Details from "~/components/character/Details";
-import ProficiencyBonus from "~/components/character/ProficiencyBonus";
-import Actions from "~/components/character/Actions";
+import characterComponents from "~/components/character";
 
 export default {
   components: {
     FeatureList,
-    Abilities,
-    Details,
-    ProficiencyBonus,
-    Actions,
+    ...characterComponents,
   },
   async asyncData({ params, $content }) {
     try {
