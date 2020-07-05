@@ -2,9 +2,9 @@
   <div class="ability">
     <Dice class="dice" :modifier="mod">
       <div class="container">
-        <label>{{ label }}</label>
-        <div class="value">{{ value }}</div>
         <div class="mod">{{ displayMod }}</div>
+        <div class="value">{{ value }}</div>
+        <Label>{{ label }}</Label>
       </div>
     </Dice>
   </div>
@@ -12,9 +12,13 @@
 
 <script>
 import Dice from "~/components/Dice.vue";
+import Label from "~/components/Label.vue";
 export default {
-  props: ["label", "value"],
-  components: { Dice },
+  props: {
+    label: { type: String },
+    value: { type: Number },
+  },
+  components: { Dice, Label },
   computed: {
     mod() {
       return Math.floor((this.value - 10) / 2);
