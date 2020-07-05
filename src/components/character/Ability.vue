@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import Dice from "~/components/Dice.vue";
-import Label from "~/components/Label.vue";
+import Dice from "~/components/basic/Dice.vue";
+import Label from "~/components/basic/Label.vue";
 export default {
   props: {
     label: { type: String },

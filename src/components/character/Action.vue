@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import Dice from "~/components/Dice.vue";
+import Dice from "~/components/basic/Dice.vue";
 export default {
   props: {
     value: { type: Object },
