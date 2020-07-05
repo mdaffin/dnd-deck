@@ -16,11 +16,11 @@
 export default {
   name: "Dice",
   props: {
-    numDice: {
+    count: {
       type: Number,
       default: 1,
     },
-    dieType: {
+    sides: {
       type: Number,
       default: 20,
     },
@@ -54,7 +54,7 @@ export default {
       return details;
     },
     details() {
-      let details = `${this.numDice}d${this.dieType}`;
+      let details = `${this.count}d${this.sides}`;
       if (this.modifier < 0) {
         details += `${this.modifier}`;
       } else if (this.modifier > 0) {
@@ -68,15 +68,15 @@ export default {
       this.rolls = [];
     },
     rollDice() {
-      if (this.numDice <= 0) {
+      if (this.count <= 0) {
         throw new RangeError("The number of dice cannot be <= 0");
       }
-      if (this.dieType <= 0) {
+      if (this.sides <= 0) {
         throw new RangeError("The die type cannot be <= 0");
       }
       this.rolls = [];
-      for (let i = 0; i < this.numDice; ++i) {
-        const roll = Math.floor(Math.random() * this.dieType) + 1;
+      for (let i = 0; i < this.count; ++i) {
+        const roll = Math.floor(Math.random() * this.sides) + 1;
         this.rolls.push(roll);
       }
     },

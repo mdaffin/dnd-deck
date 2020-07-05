@@ -9,7 +9,7 @@
           id="num_dice"
           name="num_dice"
           min="1"
-          v-model.number="rollData.numDice"
+          v-model.number="rollData.count"
           value="1"
         />
       </div>
@@ -45,8 +45,8 @@
       </div>
       <div class="form-group">
         <Dice
-          :numDice="rollData.numDice"
-          :dieType="rollData.dieType"
+          :count="rollData.count"
+          :sides="rollData.sides"
           :modifier="rollData.mod"
         />
       </div>
@@ -66,8 +66,8 @@ export default {
   data() {
     return {
       rollData: {
-        numDice: 0,
-        dieType: 0,
+        count: 0,
+        sides: 0,
         mod: 0,
       },
     };
