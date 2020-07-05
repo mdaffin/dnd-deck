@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Label from "~/components/Label.vue";
+import Label from "~/components/basic/Label.vue";
 export default {
   props: ["label", "value"],
   components: { Label },

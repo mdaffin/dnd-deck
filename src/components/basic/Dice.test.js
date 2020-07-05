@@ -1,5 +1,5 @@
 import { shallowMount } from "@vue/test-utils";
-import Dice from "~/components/Dice.vue";
+import Dice from "~/components/basic/Dice.vue";
 
 describe("Dice", () => {
   it("Number of dice should not be <= 0", () => {
