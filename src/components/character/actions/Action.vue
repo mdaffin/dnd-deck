@@ -1,9 +1,11 @@
 <template>
-  <div class="row">
-    <ProficiencyMarker :checked="value.proficiency !== undefined" />
-    <input readonly :value="total" />
-    <label>{{ label }}</label>
-  </div>
+  <Dice :mod="total">
+    <div class="row">
+      <ProficiencyMarker :checked="value.proficiency !== undefined" />
+      <input readonly :value="total" />
+      <label>{{ label }}</label>
+    </div>
+  </Dice>
 </template>
 
 <script>
@@ -28,18 +30,22 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: center;
+  border-radius: 5px;
 }
 
-label {
-  margin-left: 8px;
+.row > * {
+  margin: 0 8px;
+}
+
+.row:hover {
+  background-color: #eee;
 }
 
 input {
   text-align: center;
   border: none;
 
-  background-color: #fff;
+  background-color: transparent;
   width: 32px;
-  margin-left: 8px;
 }
 </style>
