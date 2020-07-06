@@ -10,14 +10,15 @@
       </section>
       <section class="combat">
         <Combat
-          armor="2"
-          hitPoints="23"
-          maxHitPoints="25"
-          hitDice="4d6"
-          speed="30"
-          passivePerception="2"
-          initiative="4"
+          :armor="2"
+          :hitPoints="23"
+          :maxHitPoints="25"
+          :hitDice="'4d6'"
+          :speed="30"
+          :passivePerception="2"
+          :initiative="4"
         />
+        <Attacks :attacks="attacks" />
       </section>
     </section>
     <h2>Race Features</h2>
@@ -217,6 +218,25 @@ export default {
           acc.charisma += cur.charisma || 0;
           return acc;
         }, abilityScores);
+    },
+
+    attacks() {
+      return [
+        {
+          name: "Short Sword",
+          attack: 4,
+          damage: { count: 2, sides: 6, modifier: 3 },
+          type: "Percing",
+          range: 5,
+        },
+        {
+          name: "Longbow",
+          attack: 6,
+          damage: { count: 1, sides: 6, modifier: 6 },
+          type: "Percing",
+          range: 120,
+        },
+      ];
     },
   },
 };
