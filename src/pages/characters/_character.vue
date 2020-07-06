@@ -8,6 +8,17 @@
         <Actions label="Saving Throws" :actions="savingThrows" />
         <Actions label="Skills" :actions="skills" />
       </section>
+      <section class="combat">
+        <Combat
+          armor="2"
+          hitPoints="23"
+          maxHitPoints="25"
+          hitDice="4d6"
+          speed="30"
+          passivePerception="2"
+          initiative="4"
+        />
+      </section>
     </section>
     <h2>Race Features</h2>
     <h3>
