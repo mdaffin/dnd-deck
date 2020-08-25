@@ -4,7 +4,7 @@
       v-for="action in actions"
       :key="action.name"
       :label="action.name"
-      :value="({ value: action.value, proficiency: action.proficiency })"
+      :value="{ value: action.value, proficiency: action.proficiency }"
     />
     <Label class="label">{{ label }}</Label>
   </div>
